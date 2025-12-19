@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>BQ Technologies</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <meta
@@ -102,10 +102,10 @@
         width: 100%;
         background-color: white;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 50px;
+
         position: relative;
         left: 0;
         bottom: 0;
@@ -119,16 +119,58 @@
         font-weight: 600;
         line-height: normal;
       }
+      footer a {
+        color: #333;
+        text-align: center;
+        font-family: Poppins;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        text-decoration: underline;
+      }
+      .footer-contact-logo {
+        display: flex;
+        flex-direction: row;
+        gap: 50px;
+        align-items: center;
+        font-family: Poppins;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 28px;
+      }
+      .label {
+        color: #7255a4;
+        font-family: Poppins;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 28px;
+      }
+      .footer-legal {
+        margin-top: 20px;
+        color: #333;
+        text-align: center;
+        font-family: Poppins;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 171.429% */
+      }
       @media (min-width: 1024px) {
         .content {
           max-width: 1221px;
-          margin: 140px auto;
+          margin: 56px auto;
         }
         .content .companies > div p {
           margin: 20px;
         }
         footer {
-          padding: 100px;
+          padding: 50px;
+        }
+        .footer-legal-spacer-mobile {
+          display: none;
         }
       }
 
@@ -145,10 +187,10 @@
           width: 100%;
           flex-direction: column;
           gap: 50px;
-          margin: 100px 30px;
+          margin: 30px;
         }
         footer {
-          padding: 50px 20px;
+          padding: 40px 20px;
           flex-direction: column;
           gap: 20px;
         }
@@ -166,6 +208,44 @@
         footer img {
           max-width: 90%;
         }
+        .footer-contact-logo {
+          flex-direction: column;
+          text-align: center;
+        }
+        .footer-legal-desktop {
+          display: none;
+        }
+      }
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background: rgba(0, 0, 0, 0.5);
+      }
+      .modal-content {
+        background: #fff;
+        margin: 10% auto;
+        padding: 30px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+        font-family: Poppins;
+      }
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 32px;
+        font-weight: bold;
+        color: #7255a4;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -222,14 +302,81 @@
       </div>
     </div>
     <footer>
-      <a
-        href="https://www.bqtech.com/"
-        title="BQ Technologies Home"
-        rel="noopener noreferrer"
-      >
-        <img src="bq-tech-logo-purple.png" alt="BQ Technologies Logo" />
-      </a>
-      <p>More to come January 1st, 2026</p>
+      <div class="footer-contact-logo">
+        <a
+          href="https://www.bqtech.com/"
+          title="BQ Technologies Home"
+          rel="noopener noreferrer"
+        >
+          <img src="bq-tech-logo-purple.png" alt="BQ Technologies Logo" />
+        </a>
+        <div>
+          <div>301 Reagan Street | Sunbury, PA 17801 USA</div>
+          <div><span class="label">Phone:</span> 570-286-5611</div>
+          <div><span class="label">E-mail:</span> info@brushindustries.com</div>
+        </div>
+      </div>
+      <div class="footer-legal">
+        © BQ Technologies. 2025 All rights reserved.
+        <br class="footer-legal-spacer-mobile" />
+        <a href="#" id="privacy-link">Privacy Policy</a> |
+
+        <a href="#" id="terms-link">Terms of Service</a>
+        <br class="footer-legal-spacer-mobile" />
+        <span class="footer-legal-desktop">|</span>
+        Website by <a href="">MoJo Active</a>
+      </div>
     </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" data-modal="privacy-modal">&times;</span>
+        <h2>Privacy Policy</h2>
+        <p>
+          <!-- Your privacy policy content goes here. -->
+          This is a sample privacy policy. Replace this text with your actual
+          policy.
+        </p>
+      </div>
+    </div>
+    <!-- Terms of Service Modal -->
+    <div id="terms-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" data-modal="terms-modal">&times;</span>
+        <h2>Terms of Service</h2>
+        <p>
+          <!-- Your terms of service content goes here. -->
+          This is a sample terms of service. Replace this text with your actual
+          terms.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Open modals
+      document.getElementById("privacy-link").onclick = function (e) {
+        e.preventDefault();
+        document.getElementById("privacy-modal").style.display = "block";
+      };
+      document.getElementById("terms-link").onclick = function (e) {
+        e.preventDefault();
+        document.getElementById("terms-modal").style.display = "block";
+      };
+      // Close modals
+      document.querySelectorAll(".close").forEach(function (btn) {
+        btn.onclick = function () {
+          document.getElementById(
+            this.getAttribute("data-modal")
+          ).style.display = "none";
+        };
+      });
+      // Close modal when clicking outside content
+      window.onclick = function (event) {
+        document.querySelectorAll(".modal").forEach(function (modal) {
+          if (event.target === modal) modal.style.display = "none";
+        });
+      };
+    </script>
   </body>
 </html>
