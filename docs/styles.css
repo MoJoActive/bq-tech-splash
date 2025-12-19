@@ -1,0 +1,21 @@
+#main-title {
+    display: none;
+}
+
+body {
+    background: url(purple-bg.png);
+    font-family: 'Poppins';
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media (min-width: 1024px) {
+    .content {
+        max-width: 1221px;
+        margin: 222px auto;
+    }
+}
+
